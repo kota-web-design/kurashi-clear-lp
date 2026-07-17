@@ -6,6 +6,11 @@ const hero = document.querySelector(".hero");
 const hamburger = document.querySelector(".hamburger");
 const mobileMenu = document.querySelector(".mobile-menu");
 const faqItems = document.querySelectorAll(".poster-faq-list details");
+const lineDemoTriggers = document.querySelectorAll("[data-demo-line]");
+const lineDemoModal = document.querySelector("#demo-line-modal");
+const lineDemoDialog = lineDemoModal?.querySelector(".demo-modal-dialog");
+const lineDemoCloseButton = lineDemoModal?.querySelector(".demo-modal-close");
+let lineDemoReturnFocus = null;
 
 // ========================================
 // FAQの初期状態
@@ -48,6 +53,28 @@ const toggleMenu = () => {
 };
 
 // ========================================
+// LINEデモ案内モーダルの開閉処理
+// ========================================
+const openLineDemo = (trigger) => {
+  if (!lineDemoModal || !lineDemoDialog) return;
+  lineDemoReturnFocus = trigger;
+  closeMenu();
+  lineDemoModal.classList.add("is-open");
+  lineDemoModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("demo-modal-open");
+  lineDemoDialog.focus({ preventScroll: true });
+};
+
+const closeLineDemo = () => {
+  if (!lineDemoModal?.classList.contains("is-open")) return;
+  lineDemoModal.classList.remove("is-open");
+  lineDemoModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("demo-modal-open");
+  lineDemoReturnFocus?.focus({ preventScroll: true });
+  lineDemoReturnFocus = null;
+};
+
+// ========================================
 // スクロール・リサイズイベント
 // ========================================
 updateFixedCta();
@@ -62,6 +89,17 @@ hamburger?.addEventListener("click", (event) => {
   toggleMenu();
 });
 
+lineDemoTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", (event) => {
+    event.preventDefault();
+    openLineDemo(trigger);
+  });
+});
+
+lineDemoModal?.addEventListener("click", (event) => {
+  if (event.target.closest("[data-demo-modal-close]")) closeLineDemo();
+});
+
 mobileMenu?.addEventListener("click", (event) => {
   if (event.target.closest("a")) closeMenu();
 });
@@ -73,5 +111,16 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeMenu();
+  if (event.key === "Tab" && lineDemoModal?.classList.contains("is-open")) {
+    event.preventDefault();
+    lineDemoCloseButton?.focus({ preventScroll: true });
+    return;
+  }
+
+  if (event.key !== "Escape") return;
+  if (lineDemoModal?.classList.contains("is-open")) {
+    closeLineDemo();
+    return;
+  }
+  closeMenu();
 });

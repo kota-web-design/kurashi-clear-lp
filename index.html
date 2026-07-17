@@ -30,7 +30,7 @@
     <link rel="icon" href="img/favicon.ico?v=20260712-1" sizes="any" />
     <link rel="icon" type="image/png" href="img/favicon.png?v=20260712-1" sizes="512x512" />
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=20260712-1" />
-    <link rel="stylesheet" href="style.css?v=20260712-21" />
+    <link rel="stylesheet" href="style.css?v=20260717-22" />
   </head>
   <body>
     <div class="page">
@@ -55,7 +55,14 @@
             <a class="header-image-cta header-tel-cta" href="tel:0120123456" aria-label="今すぐ電話をかける">
               <img src="img/fv-contact-tel.webp?v=20260712-4" alt="" width="1200" height="400" />
             </a>
-            <a class="header-image-cta header-line-cta" href="#line" aria-label="LINEで無料見積もり">
+            <a
+              class="header-image-cta header-line-cta"
+              href="#line"
+              aria-label="LINEで無料見積もり"
+              aria-controls="demo-line-modal"
+              aria-haspopup="dialog"
+              data-demo-line
+            >
               <img src="img/fv-contact-line.webp?v=20260712-4" alt="" width="1200" height="400" />
             </a>
           </div>
@@ -79,7 +86,14 @@
           <a href="#flow">ご利用の流れ</a>
           <a href="#faq">よくある質問</a>
           <div class="mobile-menu-ctas" aria-label="お問い合わせ">
-            <a class="mobile-menu-image-cta" href="#line" aria-label="LINEで無料見積もり">
+            <a
+              class="mobile-menu-image-cta"
+              href="#line"
+              aria-label="LINEで無料見積もり"
+              aria-controls="demo-line-modal"
+              aria-haspopup="dialog"
+              data-demo-line
+            >
               <img src="img/header-line-cta.webp?v=20260711-1" alt="" width="1000" height="327" />
             </a>
             <a class="mobile-menu-image-cta" href="tel:0120123456" aria-label="今すぐ電話をかける">
@@ -139,7 +153,14 @@
             </div>
 
             <div class="fv-contact-actions" aria-label="お問い合わせ方法">
-              <a class="fv-contact-action" href="#line" aria-label="LINEで無料見積もり">
+              <a
+                class="fv-contact-action"
+                href="#line"
+                aria-label="LINEで無料見積もり"
+                aria-controls="demo-line-modal"
+                aria-haspopup="dialog"
+                data-demo-line
+              >
                 <img src="img/fv-contact-line.webp?v=20260712-4" alt="" width="1200" height="400" loading="lazy" decoding="async" />
               </a>
               <a class="fv-contact-action" href="tel:0120123456" aria-label="電話で相談する。0120-123-456、受付時間8時から20時、年中無休">
@@ -621,6 +642,9 @@
                   class="image-final-action image-final-line"
                   href="#contact"
                   aria-label="LINEで無料見積もり。写真を送るだけで簡単です"
+                  aria-controls="demo-line-modal"
+                  aria-haspopup="dialog"
+                  data-demo-line
                 >
                   <img
                     src="img/fv-contact-line.webp?v=20260712-4"
@@ -700,6 +724,41 @@
       </footer>
 
       <!-- ========================================
+        LINE Demo Modal
+      ======================================== -->
+      <div class="demo-modal" id="demo-line-modal" aria-hidden="true">
+        <div class="demo-modal-backdrop" data-demo-modal-close></div>
+        <div
+          class="demo-modal-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="demo-line-title"
+          aria-describedby="demo-line-description"
+          tabindex="-1"
+        >
+          <button
+            class="demo-modal-close"
+            type="button"
+            aria-label="LINE案内を閉じる"
+            data-demo-modal-close
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+          <h2 class="visually-hidden" id="demo-line-title">ポートフォリオ用デモサイトです</h2>
+          <p class="visually-hidden" id="demo-line-description">
+            実際のサイトでは、公式LINEの写真見積もり画面へ移動する想定です。
+          </p>
+          <img
+            src="img/demo-line-notice.webp?v=20260717-1"
+            alt=""
+            width="1000"
+            height="1000"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- ========================================
         Mobile Fixed Telephone CTA
       ======================================== -->
       <div class="mobile-fixed-cta" aria-label="固定問い合わせ">
@@ -708,6 +767,6 @@
         </a>
       </div>
     </div>
-    <script src="script.js?v=20260712-1"></script>
+    <script src="script.js?v=20260717-2"></script>
   </body>
 </html>

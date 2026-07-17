@@ -631,6 +631,96 @@ details p {
 }
 
 /* ========================================
+   LINE Demo Modal
+======================================== */
+body.demo-modal-open {
+  overflow: hidden;
+}
+
+.demo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.demo-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.demo-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 25, 46, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.demo-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100vw - 32px), 680px);
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  background: var(--white);
+  border-radius: 28px;
+  box-shadow: 0 28px 80px rgba(7, 25, 46, 0.3);
+  transform: translateY(14px) scale(0.98);
+  transition: transform 0.22s ease;
+  scrollbar-width: thin;
+}
+
+.demo-modal.is-open .demo-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.demo-modal-dialog > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+.demo-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(16, 44, 68, 0.1);
+  border-radius: 50%;
+  box-shadow: 0 8px 22px rgba(7, 25, 46, 0.14);
+  cursor: pointer;
+  font: 700 30px/1 Arial, sans-serif;
+  transition: color 0.18s ease, transform 0.18s ease, background-color 0.18s ease;
+}
+
+.demo-modal-close:hover {
+  color: var(--green-dark);
+  background: var(--white);
+  transform: scale(1.05);
+}
+
+.demo-modal-close:focus-visible,
+[data-demo-line]:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* ========================================
    Mobile Fixed CTA
 ======================================== */
 .mobile-fixed-cta {
